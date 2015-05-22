@@ -24,4 +24,18 @@ class Choice(models.Model):
   def __unicode__(self):
     return self.choice_text 
  
+class Runner(models.Model):
+  name = models.CharField(max_length=200)
+  start_date = models.DateTimeField('date published', default=timezone.now())
+  def __unicode__(self):
+    return self.name
+
+
+class Run(models.Model):
+  person = models.ForeignKey(Runner)
+  distance = models.DecimalField(max_digits=5, decimal_places=2)
+  time = models.DecimalField(max_digits=5, decimal_places=2) #minutes
+  mood = models.CharField(max_length = 10)
+  def __unicode__(self):
+    return self.mood
 
