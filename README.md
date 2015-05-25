@@ -1,2 +1,3 @@
-the following command is necessary to add on subclasses of those choices
-<q.choice_set.create() >
+An App that allows you to record your run history and allows you to visualize your past running record
+
+

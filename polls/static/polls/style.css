@@ -1,3 +1,30 @@
-*{
-  color: green;
+p {
+  color: blue;
 }
+
+
+ul #block {
+    list-style-type: none;
+    margin: 1%;
+    padding: 1%;
+}
+
+#block{
+  min-height: 30px; min-width: 30px;
+  float: left;
+  border: 5px solid black; 
+}
+
+.green{
+  background-color: green;
+  z-index: 99;
+}
+
+.yellow{
+  background-color: yellow;
+}
+
+.red{
+  background-color:red;
+}
+

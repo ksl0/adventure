@@ -1,5 +1,3 @@
-from django.db import models
-
 # Create your models here.
 from django.db import models
 from django.utils import timezone
@@ -37,4 +35,4 @@ class Run(models.Model):
   time = models.DecimalField(max_digits=5, decimal_places=2) #minutes
   mood = models.CharField(max_length = 10)
   def __unicode__(self):
-    return self.mood
+    return self.person.name

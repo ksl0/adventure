@@ -1,0 +1,22 @@
+{% extends "base.html" %} 
+{% block content %}
+
+<h1> {{person.name}}'s Run History </h1>
+
+{% if error_message %} <p><strong> {{error_message}}</strong></p> 
+{% endif %}
+
+{% if run %}
+  <ul>
+  {% for step in run %}
+    <li  class={{step.mood}} id="block" > 
+      <p> distance ran: {{step.distance}} </p>
+      <p> time ran: {{step.distance}} </p>
+    </li> 
+  {% endfor%}
+  </ul>
+{% else %}
+  <p> {{person.name}} hasn't run yet :( </p>
+{% endif %}
+
+{% endblock %}

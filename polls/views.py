@@ -28,7 +28,7 @@ def run(request):
   p.save();  
 
 
-def get_name(request):
+def signup(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
@@ -61,21 +61,20 @@ def get_exercise(request):
             # redirect to a new URL:
             data = form.cleaned_data
             hours = data['duration_minutes']/float(60) + data['duration_hours'] 
-  
-            p = Runner(name = data['your_name'])
-            p.save();
-            ## TODO: check if that person exists and add the new data to them
-            ## currently the name data is just being discarded
-            ## also should uncomment 'person' in the Run model
+            run_name = data['your_name']
+            if Runner.objects.filter(name=run_name).exists(): 
+              p = get_object_or_404(Runner.objects, name=run_name)
+            else: 
+              p = Runner(name = data['your_name'])
+              p.save();
             r = Run(person=p, distance=data['dist'], \
                     time = hours, mood=data['mood'] ); 
             r.save();
+            # goto homepage
             return HttpResponseRedirect("")
-
     # if a GET (or any other method) we'll create a blank form
     else:
         form = RunForm()
-
     return render(request, 'polls/exercise.html', {'form': form})
 
 
@@ -93,23 +92,14 @@ def vote(request, pk):
     selected_choice.save()
     return HttpResponseRedirect(reverse('polls:results', args=(p.id,)))
 
-
-#####################################################
-#### functions below not necessarily used
-# Create your views here.
-def index(request):
-  latest_question_list = Question.objects.order_by('-pub_date')[:5] 
-  ## a json :) output ayaya
-  context = {'latest_question_list': latest_question_list}
-  return render(request, 'polls/index.html', context)
-
-def detail(request, question_id):
-  question = get_object_or_404(Question, pk=question_id) 
-  return render(request, 'polls/detail.html', {'question': question})
-
-def results(request, question_id): 
-  question = get_object_or_404(Question, pk=question_id)
-  return render(request, 'polls/results.html', {'question': question})
-
-def thanks(request):
-  return HttpResponse("Thanks!")
+def get_colors(request, pk):
+  p = get_object_or_404(Runner, pk=pk)
+  try: 
+    runs = p.run_set.all()
+  except (KeyError, Run.DoesNotExist):
+    return render(request, 'polls/runDetail.html', {
+      'run' : p,
+      'error_message': "No runs yet",
+    })
+  else:
+    return render(request, 'polls/runDetail.html', {'person': p, 'run': runs})

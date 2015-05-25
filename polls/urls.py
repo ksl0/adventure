@@ -7,10 +7,9 @@ urlpatterns = patterns('',
     url(r'^(?P<pk>\d+)/results/$', views.ResultsView.as_view(), name='results'), 
 
     url(r'^(?P<pk>\d+)/vote/$', views.vote, name='vote'),
-    url(r'^newname/$', views.get_name, name='name'), 
+    url(r'^signup/$', views.signup, name='name'), 
     url(r'^exercise/$', views.get_exercise, name='run'), 
-
-    url(r'^thanks/$', views.thanks, name='thanks'), )
-
+    url(r'^exercise/(?P<pk>\d+)/$', views.get_colors, name='runDetail')
+)
 
 
