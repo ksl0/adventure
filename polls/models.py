@@ -38,4 +38,3 @@ class Run(models.Model):
   mood = models.CharField(max_length = 10)
   def __unicode__(self):
     return self.mood
-

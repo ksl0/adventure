@@ -3,7 +3,7 @@ from django.http import HttpResponse,HttpResponseRedirect, HttpResponse
 from polls.models import Question, Choice, Run, Runner
 from django.core.urlresolvers import reverse
 from django.views import generic
-from .forms import NameForm
+from .forms import NameForm, RunForm
 
 class IndexView(generic.ListView):
   template_name = 'polls/index.html'
@@ -48,6 +48,35 @@ def get_name(request):
         form = NameForm()
 
     return render(request, 'polls/name.html', {'form': form})
+
+def get_exercise(request):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = RunForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:
+            data = form.cleaned_data
+            hours = data['duration_minutes']/float(60) + data['duration_hours'] 
+  
+            p = Runner(name = data['your_name'])
+            p.save();
+            ## TODO: check if that person exists and add the new data to them
+            ## currently the name data is just being discarded
+            ## also should uncomment 'person' in the Run model
+            r = Run(person=p, distance=data['dist'], \
+                    time = hours, mood=data['mood'] ); 
+            r.save();
+            return HttpResponseRedirect("")
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = RunForm()
+
+    return render(request, 'polls/exercise.html', {'form': form})
 
 
 def vote(request, pk):

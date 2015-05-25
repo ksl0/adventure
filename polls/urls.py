@@ -8,6 +8,7 @@ urlpatterns = patterns('',
 
     url(r'^(?P<pk>\d+)/vote/$', views.vote, name='vote'),
     url(r'^newname/$', views.get_name, name='name'), 
+    url(r'^exercise/$', views.get_exercise, name='run'), 
 
     url(r'^thanks/$', views.thanks, name='thanks'), )
 
