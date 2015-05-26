@@ -103,8 +103,11 @@ STATIC_ROOT = 'staticfiles'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+<<<<<<< HEAD
 
 try:
   from .local_settings import *
 except ImportError:
   pass
+=======
+>>>>>>> c27c80a68a5b3a4a0b1b5ca2443da2d698799cb9
