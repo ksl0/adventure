@@ -29,7 +29,4 @@ def get_data(url):
 def rgbMood(comment): 
    sentiment = get_data(format_comment(comment))
    colors = rgbConverter(sentiment)
-   print colors 
-   print comment
-   print sentiment
    return "rgb"+ str(tuple(colors))

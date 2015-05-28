@@ -24,7 +24,7 @@ class Choice(models.Model):
  
 class Runner(models.Model):
   name = models.CharField(max_length=200)
-  start_date = models.DateTimeField('date published', default=timezone.now())
+  start_date = models.DateTimeField('date published', auto_now=True)
   def __unicode__(self):
     return self.name
 

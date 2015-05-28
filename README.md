@@ -4,3 +4,9 @@ An App that allows you to record your run history and allows you to visualize yo
 
 Extensions:
 Uses IDOL to allow for sentiment analysis of 'mood'
+
+Maintainence:
+run the following command to update static files
+django-admin collectstatic
+
+
