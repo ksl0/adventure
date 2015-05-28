@@ -9,9 +9,9 @@
 {% if run %}
   <ul>
   {% for step in run %}
-    <li  class={{step.mood}} id="block" > 
-      <p> distance ran: {{step.distance}} </p>
-      <p> time ran: {{step.distance}} </p>
+    <li  id="block" style="background-color:{{step.rgb}}"> 
+      <p> distance (mi.): {{step.distance}} </p>
+      <p> time (hr): {{step.time}} </p>
     </li> 
   {% endfor%}
   </ul>

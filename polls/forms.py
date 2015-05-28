@@ -9,6 +9,6 @@ class RunForm(forms.Form):
   duration_minutes = forms.FloatField(label="time (minutes)", min_value=0, max_value=59)
   duration_hours= forms.FloatField(label="time (hours)", min_value=0, max_value=24)
   day = forms.DateField(initial=datetime.date.today)
-  mood = forms.CharField(label="Mood", max_length=20)
+  mood = forms.CharField(label="Comments", max_length=200)
    
   

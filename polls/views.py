@@ -4,6 +4,7 @@ from polls.models import Question, Choice, Run, Runner
 from django.core.urlresolvers import reverse
 from django.views import generic
 from .forms import NameForm, RunForm
+from .mood import rgbMood
 
 class IndexView(generic.ListView):
   template_name = 'polls/index.html'
@@ -67,8 +68,12 @@ def get_exercise(request):
             else: 
               p = Runner(name = data['your_name'])
               p.save();
+            
+            ## run color-coded mood
+            color = rgbMood(data['mood'])
+
             r = Run(person=p, distance=data['dist'], \
-                    time = hours, mood=data['mood'] ); 
+                    time = hours, mood=data['mood'], rgb = color ); 
             r.save();
             # goto homepage
             return HttpResponseRedirect("")
@@ -103,3 +108,6 @@ def get_colors(request, pk):
     })
   else:
     return render(request, 'polls/runDetail.html', {'person': p, 'run': runs})
+
+
+

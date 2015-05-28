@@ -33,6 +33,7 @@ class Run(models.Model):
   person = models.ForeignKey(Runner)
   distance = models.DecimalField(max_digits=5, decimal_places=2)
   time = models.DecimalField(max_digits=5, decimal_places=2) #minutes
-  mood = models.CharField(max_length = 10)
+  mood = models.CharField(max_length = 200)
+  rgb = models.CharField(max_length=10)
   def __unicode__(self):
     return self.person.name
