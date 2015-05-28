@@ -38,9 +38,8 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('distance', models.DecimalField(max_digits=5, decimal_places=2)),
                 ('time', models.DecimalField(max_digits=5, decimal_places=2)),
-                ('run_date', models.DateTimeField(verbose_name=b'date ran')),
-                ('mood', models.CharField(max_length=10)),
-                ('comments', models.CharField(max_length=200)),
+                ('mood', models.CharField(max_length=200)),
+                ('rgb', models.CharField(max_length=20)),
             ],
             options={
             },
@@ -51,6 +50,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=200)),
+                ('start_date', models.DateTimeField(auto_now=True, verbose_name=b'date published')),
             ],
             options={
             },

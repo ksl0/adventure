@@ -34,6 +34,6 @@ class Run(models.Model):
   distance = models.DecimalField(max_digits=5, decimal_places=2)
   time = models.DecimalField(max_digits=5, decimal_places=2) #minutes
   mood = models.CharField(max_length = 200)
-  rgb = models.CharField(max_length=10)
+  rgb = models.CharField(max_length=20)
   def __unicode__(self):
     return self.person.name
