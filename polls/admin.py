@@ -26,8 +26,7 @@ class RunInline(admin.TabularInline):
 
 class RunnerAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None,               {'fields': ['name']}),
-        ('Date information', {'fields': ['start_date'], 'classes': ['collapse']}),
+        (None,               {'fields': ['name']})
     ]
     inlines = [RunInline]
     list_display = ('name', 'start_date')

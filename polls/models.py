@@ -2,6 +2,7 @@
 from django.db import models
 from django.utils import timezone
 import datetime
+from geoposition.fields import GeopositionField
 
 class Question(models.Model):
   question_text = models.CharField(max_length=200)
@@ -35,5 +36,6 @@ class Run(models.Model):
   time = models.DecimalField(max_digits=5, decimal_places=2) #minutes
   mood = models.CharField(max_length = 200)
   rgb = models.CharField(max_length=20)
+  position= GeopositionField()
   def __unicode__(self):
     return self.person.name

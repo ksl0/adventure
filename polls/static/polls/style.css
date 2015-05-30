@@ -11,3 +11,7 @@ ul #block {
     float: left;
 }
 
+div #content{
+   margin:2%;
+   width:80%;
+}

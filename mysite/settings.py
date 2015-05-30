@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'polls', 
+    'geoposition',   
 )
 
 MIDDLEWARE_CLASSES = (

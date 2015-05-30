@@ -9,7 +9,9 @@ urlpatterns = patterns('',
     url(r'^(?P<pk>\d+)/vote/$', views.vote, name='vote'),
     url(r'^signup/$', views.signup, name='name'), 
     url(r'^exercise/$', views.get_exercise, name='run'), 
-    url(r'^exercise/(?P<pk>\d+)/$', views.get_colors, name='runDetail')
+    url(r'^exercise/(?P<pk>\d+)/$', views.get_colors, name='runDetail'),
+
+    url(r'^getmap/', views.get_map, name='map')
 )
 
 

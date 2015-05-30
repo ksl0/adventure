@@ -1,8 +1,12 @@
 dj-database-url==0.3.0
 dj-static==0.0.6
 Django==1.8.2
+django-appconf==1.0.1
+django-geoposition==0.2.2
+django-static-jquery==2.1.4
 django-toolbelt==0.0.1
 gunicorn==19.3.0
 psycopg2==2.6
 requests==2.5.1
+six==1.9.0
 static3==0.6.1

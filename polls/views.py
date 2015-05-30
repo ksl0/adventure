@@ -3,8 +3,10 @@ from django.http import HttpResponse,HttpResponseRedirect, HttpResponse
 from polls.models import Question, Choice, Run, Runner
 from django.core.urlresolvers import reverse
 from django.views import generic
-from .forms import NameForm, RunForm
+from .forms import NameForm, RunForm, MapForm
 from .mood import rgbMood
+from geoposition.forms import GeopositionField 
+from django.shortcuts import render_to_response
 
 class IndexView(generic.ListView):
   template_name = 'polls/index.html'
@@ -50,6 +52,10 @@ def signup(request):
 
     return render(request, 'polls/name.html', {'form': form})
 
+def get_map(request):
+  form = MapForm(request.POST)  
+  return render(request, 'polls/map.html', {'form': form})
+
 def get_exercise(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
@@ -68,10 +74,9 @@ def get_exercise(request):
             else: 
               p = Runner(name = data['your_name'])
               p.save();
-            
             ## run color-coded mood
             color = rgbMood(data['mood'])
-
+            print(data)
             r = Run(person=p, distance=data['dist'], \
                     time = hours, mood=data['mood'], rgb = color ); 
             r.save();

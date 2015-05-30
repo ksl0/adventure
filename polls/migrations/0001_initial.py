@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+import geoposition.fields
 
 
 class Migration(migrations.Migration):
@@ -13,59 +14,46 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Choice',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('id', models.AutoField(primary_key=True, serialize=False, auto_created=True, verbose_name='ID')),
                 ('choice_text', models.CharField(max_length=200)),
                 ('votes', models.IntegerField(default=0)),
             ],
-            options={
-            },
-            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='Question',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('id', models.AutoField(primary_key=True, serialize=False, auto_created=True, verbose_name='ID')),
                 ('question_text', models.CharField(max_length=200)),
-                ('pub_date', models.DateTimeField(verbose_name=b'date published')),
+                ('pub_date', models.DateTimeField(verbose_name='date published')),
             ],
-            options={
-            },
-            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='Run',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('distance', models.DecimalField(max_digits=5, decimal_places=2)),
-                ('time', models.DecimalField(max_digits=5, decimal_places=2)),
+                ('id', models.AutoField(primary_key=True, serialize=False, auto_created=True, verbose_name='ID')),
+                ('distance', models.DecimalField(decimal_places=2, max_digits=5)),
+                ('time', models.DecimalField(decimal_places=2, max_digits=5)),
                 ('mood', models.CharField(max_length=200)),
                 ('rgb', models.CharField(max_length=20)),
+                ('position', geoposition.fields.GeopositionField(max_length=42)),
             ],
-            options={
-            },
-            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='Runner',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('id', models.AutoField(primary_key=True, serialize=False, auto_created=True, verbose_name='ID')),
                 ('name', models.CharField(max_length=200)),
-                ('start_date', models.DateTimeField(auto_now=True, verbose_name=b'date published')),
+                ('start_date', models.DateTimeField(auto_now=True, verbose_name='date published')),
             ],
-            options={
-            },
-            bases=(models.Model,),
         ),
         migrations.AddField(
             model_name='run',
             name='person',
             field=models.ForeignKey(to='polls.Runner'),
-            preserve_default=True,
         ),
         migrations.AddField(
             model_name='choice',
             name='question',
             field=models.ForeignKey(to='polls.Question'),
-            preserve_default=True,
         ),
     ]
